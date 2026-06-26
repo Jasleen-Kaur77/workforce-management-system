@@ -1,6 +1,11 @@
 from fastapi import FastAPI
 
-app = FastAPI()
+from app.core.config import settings
+
+app = FastAPI(
+    title=settings.app_name,
+    version=settings.app_version,
+)
 
 @app.get("/")
 def root():
@@ -10,4 +15,10 @@ def root():
 def health_check():
     return {
         "status": "healthy"
+    }
+
+@app.get("/version")
+def version():
+    return {
+        "version": settings.app_version
     }
