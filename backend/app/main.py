@@ -22,3 +22,11 @@ def version():
     return {
         "version": settings.app_version
     }
+
+from app.db.database import engine
+
+@app.get("/database")
+def database():
+    return {
+        "message": "Database connection created successfully"
+    }
